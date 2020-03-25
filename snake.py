@@ -47,8 +47,9 @@ def game_loop():
     y_change=0
 
     foodx = round(random.randrange(0, dis_width -30) / 10.0) * 10.0
-    foody = round(random.randrange(0, dis_width -30) / 10.0) * 10.0
+    foody = round(random.randrange(0, dis_height -30) / 10.0) * 10.0
 
+    snake_speed = 20
     snake_List = []
     Length_of_snake = 1
  
@@ -61,7 +62,7 @@ def game_loop():
         while game_close == True:
 
             dis.fill(black)
-            message("You Lost!  Press   Q-Quit o r  P-Play Again", red)
+            message("You Lost!  Press   Q-Quit or  P-Play Again", red)
             pygame.display.update()
  
             for event in pygame.event.get():
@@ -115,9 +116,12 @@ def game_loop():
             foodx = round(random.randrange(0, dis_width - 30) / 10.0) * 10.0
             foody = round(random.randrange(0, dis_height - 30) / 10.0) * 10.0
             Length_of_snake += 1
+            
+            if (Length_of_snake%5) == 0:
+                snake_speed+=5
 
 
-        clock.tick(30)   
+        clock.tick(snake_speed)   
 
     pygame.quit()
     quit()
